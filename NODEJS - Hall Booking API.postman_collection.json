@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "020742e0-d520-4fb6-969d-6c819ab7a9d2",
+		"name": "NODEJS - Hall Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25089749"
+	},
+	"item": [
+		{
+			"name": "Home Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}",
+					"host": [
+						"{{API}}"
+					]
+				},
+				"description": "Home page for Storing the Local variables"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Hall data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/hall",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"hall"
+					]
+				},
+				"description": "Click on SEND to view all the hall Data available inside the app.\n\n``` json\n{\n        \"RoomName\": \"Charles\",\n        \"id\": \"105\",\n        \"bookedStatus\": \"booked\",\n        \"customerName\": \"Joseph\",\n        \"date\": \"10/3/2023\",\n        \"StartTime\": \"12:00:00 pm\",\n        \"EndTime\": \"3:00:00 pm\",\n        \"SeatCapacity\": 80,\n        \"Amenities\": \"Podium, AC, Projector, High Tea-Cafeteria\",\n        \"Price\": \"3000\"\n    }\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Booked Rooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/hall/listbookedData",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"hall",
+						"listbookedData"
+					]
+				},
+				"description": "Click SEND to view all the Booked Rooms details"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API}}/hall/customersdata",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"hall",
+						"customersdata"
+					]
+				},
+				"description": "Click SEND to view all Customers Data\n\n``` json\n{\n        \"RoomName\": \"Charles\",\n        \"id\": \"105\",\n        \"bookedStatus\": \"booked\",\n        \"customerName\": \"Joseph\",\n        \"date\": \"10/3/2023\",\n        \"StartTime\": \"12:00:00 pm\",\n        \"EndTime\": \"3:00:00 pm\",\n        \"SeatCapacity\": 80,\n        \"Amenities\": \"Podium, AC, Projector, High Tea-Cafeteria\",\n        \"Price\": \"3000\"\n    }\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK a new Room",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerName\": \"Robert\",\r\n    \"date\": \"10-03-2023\",\r\n    \"StartTime\": \"11:00:00 am\",\r\n    \"EndTime\": \"12:30:00 pm\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/hall/105",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"hall",
+						"105"
+					]
+				},
+				"description": "Click SEND to book a new Vacant Room at required timings."
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE a new hall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SeatCapacity\": 89,\r\n    \"Amenities\": [\r\n        \"AC\",\r\n        \"Dining Hall\",\r\n        \"Podium\"\r\n    ],\r\n    \"Price\": 3000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/hall",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"hall"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
