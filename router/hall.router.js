@@ -13,20 +13,16 @@ hallRouter.get("/", (request, response) => {
 // Price for 1 Hour
 
 hallRouter.post("/", (request, response) => {
-  const { SeatCapacity, Amenities, Price } = request.body;
-  const id = Number(100 + hall.length);
-
-  const newData = [
-    ...hall,
-    {
-      id: id,
-      SeatCapacity: SeatCapacity,
-      Amenities: Amenities,
-      Price: Price,
-    },
-  ];
-  newData
-    ? response.send({ message: `New Room Created with id : ${id}` })
+  const data = request.body;
+  hall.push({
+    SeatCapacity: data.SeatCapacity,
+    id: Number(100 + hall.length),
+    Amenities: data.Amenities,
+    Price: data.Price,
+  });
+  
+  hall
+    ? response.send({ message: `New Room Created with id : ${hall[hall.length-1].id}` })
     : response.status(404).send({ message: "Room Not created !! Try again" });
 });
 
@@ -111,7 +107,7 @@ hallRouter.get("/listbookedData", (request, response) => {
 hallRouter.get("/customersdata", (request, response) => {
   let customerData = hall
     .filter((hall) => {
-      return (hall.customerName != "" && hall.bookedStatus != "vacant")
+      return hall.customerName != "" && hall.bookedStatus != "vacant";
     })
     .map((room) => {
       return {
@@ -122,8 +118,11 @@ hallRouter.get("/customersdata", (request, response) => {
         EndTime: room.EndTime,
       };
     });
-    customerData ? response.send(customerData) : response.status(401).send({"message":"Failed to Load Data. Try Again 😮"});
-
+  customerData
+    ? response.send(customerData)
+    : response
+        .status(401)
+        .send({ message: "Failed to Load Data. Try Again 😮" });
 });
 
 export default hallRouter;
